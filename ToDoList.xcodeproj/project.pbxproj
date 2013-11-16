@@ -19,6 +19,7 @@
 		DA86B0B818370C9800D7FAAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA86B0A018370C9800D7FAAF /* UIKit.framework */; };
 		DA86B0C018370C9800D7FAAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA86B0BE18370C9800D7FAAF /* InfoPlist.strings */; };
 		DA86B0C218370C9800D7FAAF /* ToDoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86B0C118370C9800D7FAAF /* ToDoListTests.m */; };
+		DA86B0CC18370F2A00D7FAAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA86B0CB18370F2A00D7FAAF /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		DA86B0BD18370C9800D7FAAF /* ToDoListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ToDoListTests-Info.plist"; sourceTree = "<group>"; };
 		DA86B0BF18370C9800D7FAAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA86B0C118370C9800D7FAAF /* ToDoListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoListTests.m; sourceTree = "<group>"; };
+		DA86B0CB18370F2A00D7FAAF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				DA86B0AB18370C9800D7FAAF /* TDLAppDelegate.h */,
 				DA86B0AC18370C9800D7FAAF /* TDLAppDelegate.m */,
+				DA86B0CB18370F2A00D7FAAF /* Main.storyboard */,
 				DA86B0AE18370C9800D7FAAF /* Images.xcassets */,
 				DA86B0A318370C9800D7FAAF /* Supporting Files */,
 			);
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA86B0CC18370F2A00D7FAAF /* Main.storyboard in Resources */,
 				DA86B0A718370C9800D7FAAF /* InfoPlist.strings in Resources */,
 				DA86B0AF18370C9800D7FAAF /* Images.xcassets in Resources */,
 			);
