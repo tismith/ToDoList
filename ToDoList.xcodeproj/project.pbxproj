@@ -55,10 +55,10 @@
 		DA86B0CB18370F2A00D7FAAF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA86B0CD18371CF900D7FAAF /* TDLAddToDoItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLAddToDoItemViewController.h; sourceTree = "<group>"; };
 		DA86B0CE18371CF900D7FAAF /* TDLAddToDoItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLAddToDoItemViewController.m; sourceTree = "<group>"; };
-		DA86B0D018371DC800D7FAAF /* TDLToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLToDoListViewController.h; path = ToDoList/TDLToDoListViewController.h; sourceTree = "<group>"; };
-		DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLToDoListViewController.m; path = ToDoList/TDLToDoListViewController.m; sourceTree = "<group>"; };
-		DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLToDoItem.h; sourceTree = SOURCE_ROOT; };
-		DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLToDoItem.m; sourceTree = SOURCE_ROOT; };
+		DA86B0D018371DC800D7FAAF /* TDLToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLToDoListViewController.h; sourceTree = "<group>"; };
+		DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLToDoListViewController.m; sourceTree = "<group>"; };
+		DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLToDoItem.h; path = Models/TDLToDoItem.h; sourceTree = SOURCE_ROOT; };
+		DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLToDoItem.m; path = Models/TDLToDoItem.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,13 +85,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA78B13218381DD7001D85F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */,
+				DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */,
+			);
+			name = Models;
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
 		DA86B09018370C9700D7FAAF = {
 			isa = PBXGroup;
 			children = (
-				DA86B0D018371DC800D7FAAF /* TDLToDoListViewController.h */,
-				DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */,
-				DA86B0CD18371CF900D7FAAF /* TDLAddToDoItemViewController.h */,
-				DA86B0CE18371CF900D7FAAF /* TDLAddToDoItemViewController.m */,
+				DA78B13218381DD7001D85F2 /* Models */,
 				DA86B0A218370C9800D7FAAF /* ToDoList */,
 				DA86B0BB18370C9800D7FAAF /* ToDoListTests */,
 				DA86B09B18370C9800D7FAAF /* Frameworks */,
@@ -122,11 +129,13 @@
 		DA86B0A218370C9800D7FAAF /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				DA86B0D018371DC800D7FAAF /* TDLToDoListViewController.h */,
+				DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */,
+				DA86B0CD18371CF900D7FAAF /* TDLAddToDoItemViewController.h */,
+				DA86B0CE18371CF900D7FAAF /* TDLAddToDoItemViewController.m */,
 				DA86B0AB18370C9800D7FAAF /* TDLAppDelegate.h */,
 				DA86B0AC18370C9800D7FAAF /* TDLAppDelegate.m */,
 				DA86B0CB18370F2A00D7FAAF /* Main.storyboard */,
-				DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */,
-				DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */,
 				DA86B0AE18370C9800D7FAAF /* Images.xcassets */,
 				DA86B0A318370C9800D7FAAF /* Supporting Files */,
 			);
@@ -464,6 +473,7 @@
 				DA86B0C718370C9800D7FAAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA86B0C818370C9800D7FAAF /* Build configuration list for PBXNativeTarget "ToDoListTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +482,7 @@
 				DA86B0CA18370C9800D7FAAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
