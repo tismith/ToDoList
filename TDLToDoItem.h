@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TDLToDoItem : NSObject
+@interface TDLToDoItem : NSObject <NSCoding>
 
 @property NSString *itemName;
 @property BOOL completed;
 @property (readonly) NSDate *creationDate;
+
+-(id) initWithCoder:(NSCoder *)aDecoder;
 
 @end

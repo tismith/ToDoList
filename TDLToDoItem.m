@@ -8,6 +8,23 @@
 
 #import "TDLToDoItem.h"
 
-@implementation TDLToDoItem
+#define kNameKey @"Name"
+#define kCompletedKey @"Completed"
+#define kCreationDate @"CreationDate"
 
+@implementation TDLToDoItem
+- (void) encodeWithCoder:(NSCoder *) encoder {
+    [encoder encodeObject:self.itemName forKey:kNameKey];
+    [encoder encodeBool:self.completed forKey:kCompletedKey];
+    [encoder encodeObject:self.creationDate forKey:kCreationDate];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.itemName = [decoder decodeObjectForKey:kNameKey];
+        self.creationDate = [decoder decodeObjectForKey:kCreationDate];
+        self.completed = [decoder decodeBoolForKey:kCompletedKey];
+    }
+    return self;
+}
 @end
