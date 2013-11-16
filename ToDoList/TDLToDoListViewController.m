@@ -10,6 +10,9 @@
 #import "TDLAddToDoItemViewController.h"
 #import "TDLToDoItem.h"
 
+#define kDataFile @"data.plist"
+#define kDataKey @"Data"
+
 @interface TDLToDoListViewController ()
 
 @property NSMutableArray *toDoItems;
@@ -19,16 +22,7 @@
 @implementation TDLToDoListViewController
 
 - (void) loadInitialData {
-    TDLToDoItem *item1 = [[TDLToDoItem alloc] init];
-    item1.itemName = @"Buy Milk";
-    [self.toDoItems addObject:item1];
-    TDLToDoItem *item2 = [[TDLToDoItem alloc] init];
-    item2.itemName = @"Buy eggs";
-    [self.toDoItems addObject:item2];
-    TDLToDoItem *item3 = [[TDLToDoItem alloc] init];
-    item3.itemName = @"Read a book";
-    [self.toDoItems addObject:item3];
-    
+    [self loadList];
 }
 
 - (IBAction)unwindToList:(UIStoryboardSegue *) segue
@@ -37,8 +31,50 @@
     TDLToDoItem *item = source.toDoItem;
     if (item != nil) {
         [self.toDoItems addObject:item];
+        [self saveList];
         [self.tableView reloadData];
     }
+}
+
+- (BOOL)saveList {
+    NSError *error;
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.toDoItems forKey:kDataKey];
+    [archiver finishEncoding];
+    BOOL success = [[NSFileManager defaultManager] createFileAtPath:[[self getPrivateDocsDir] stringByAppendingPathComponent:kDataFile]  contents:data attributes:nil ];
+    if (!success) {
+        NSLog(@"Error creating data file: %@", [error localizedDescription]);
+    }
+    return success;
+}
+
+- (BOOL)createPrivateDocsDir {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Private Documents"];
+    
+    NSError *error;
+    [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+    return YES;
+}
+
+- (NSString *)getPrivateDocsDir {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Private Documents"];
+    
+    return documentsDirectory;
+}
+
+- (BOOL)loadList {
+    NSData *codedData = [[NSData alloc] initWithContentsOfFile:[[self getPrivateDocsDir] stringByAppendingPathComponent:kDataFile]];
+    if (codedData == nil) return NO;
+
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+    self.toDoItems = [unarchiver decodeObjectForKey:kDataKey];
+    [unarchiver finishDecoding];
+    return YES;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -55,6 +91,7 @@
     [super viewDidLoad];
     
     self.toDoItems = [[NSMutableArray alloc] init];
+    [self createPrivateDocsDir];
     [self loadInitialData];
     //[[self tableView] setEditing:YES animated:YES];
 
@@ -116,6 +153,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.toDoItems removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self saveList];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -156,6 +194,7 @@
     TDLToDoItem *tappedItem = [self.toDoItems objectAtIndex:indexPath.row];
     tappedItem.completed = !tappedItem.completed;
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self saveList];
 }
 
 @end
