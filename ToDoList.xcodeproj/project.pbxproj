@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA78B13518382361001D85F2 /* TDLToDoList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA78B13418382361001D85F2 /* TDLToDoList.m */; };
 		DA86B09D18370C9800D7FAAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA86B09C18370C9800D7FAAF /* Foundation.framework */; };
 		DA86B09F18370C9800D7FAAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA86B09E18370C9800D7FAAF /* CoreGraphics.framework */; };
 		DA86B0A118370C9800D7FAAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA86B0A018370C9800D7FAAF /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA78B13318382361001D85F2 /* TDLToDoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLToDoList.h; path = Models/TDLToDoList.h; sourceTree = SOURCE_ROOT; };
+		DA78B13418382361001D85F2 /* TDLToDoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLToDoList.m; path = Models/TDLToDoList.m; sourceTree = SOURCE_ROOT; };
 		DA86B09918370C9800D7FAAF /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA86B09C18370C9800D7FAAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA86B09E18370C9800D7FAAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -90,6 +93,8 @@
 			children = (
 				DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */,
 				DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */,
+				DA78B13318382361001D85F2 /* TDLToDoList.h */,
+				DA78B13418382361001D85F2 /* TDLToDoList.m */,
 			);
 			name = Models;
 			path = ToDoList;
@@ -268,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA78B13518382361001D85F2 /* TDLToDoList.m in Sources */,
 				DA86B0A918370C9800D7FAAF /* main.m in Sources */,
 				DA86B0CF18371CF900D7FAAF /* TDLAddToDoItemViewController.m in Sources */,
 				DA86B0AD18370C9800D7FAAF /* TDLAppDelegate.m in Sources */,

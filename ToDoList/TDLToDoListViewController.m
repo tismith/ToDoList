@@ -8,45 +8,27 @@
 
 #import "TDLToDoListViewController.h"
 #import "TDLAddToDoItemViewController.h"
-#import "TDLToDoItem.h"
+#import "TDLToDoList.h"
 
 #define kDataFile @"data.plist"
 #define kDataKey @"Data"
 
 @interface TDLToDoListViewController ()
 
-@property NSMutableArray *toDoItems;
+@property TDLToDoList *toDoList;
 
 @end
 
 @implementation TDLToDoListViewController
-
-- (void) loadInitialData {
-    [self loadList];
-}
 
 - (IBAction)unwindToList:(UIStoryboardSegue *) segue
 {
     TDLAddToDoItemViewController *source = [segue sourceViewController];
     TDLToDoItem *item = source.toDoItem;
     if (item != nil) {
-        [self.toDoItems addObject:item];
-        [self saveList];
+        [self.toDoList addItem:item];
         [self.tableView reloadData];
     }
-}
-
-- (BOOL)saveList {
-    NSError *error;
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [archiver encodeObject:self.toDoItems forKey:kDataKey];
-    [archiver finishEncoding];
-    BOOL success = [[NSFileManager defaultManager] createFileAtPath:[[self getPrivateDocsDir] stringByAppendingPathComponent:kDataFile]  contents:data attributes:nil ];
-    if (!success) {
-        NSLog(@"Error creating data file: %@", [error localizedDescription]);
-    }
-    return success;
 }
 
 - (BOOL)createPrivateDocsDir {
@@ -67,16 +49,6 @@
     return documentsDirectory;
 }
 
-- (BOOL)loadList {
-    NSData *codedData = [[NSData alloc] initWithContentsOfFile:[[self getPrivateDocsDir] stringByAppendingPathComponent:kDataFile]];
-    if (codedData == nil) return NO;
-
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-    self.toDoItems = [unarchiver decodeObjectForKey:kDataKey];
-    [unarchiver finishDecoding];
-    return YES;
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -89,10 +61,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.toDoItems = [[NSMutableArray alloc] init];
     [self createPrivateDocsDir];
-    [self loadInitialData];
+    self.toDoList = [[TDLToDoList alloc] initWithContentsOfFile:[[self getPrivateDocsDir] stringByAppendingString:kDataFile]] ;
+    
     //[[self tableView] setEditing:YES animated:YES];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -119,7 +90,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.toDoItems count];
+    return [self.toDoList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,7 +98,7 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    TDLToDoItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
+    TDLToDoItem *toDoItem = [self.toDoList objectAtIndex:indexPath.row];
     cell.textLabel.text = toDoItem.itemName;
     if (toDoItem.completed) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -151,21 +122,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.toDoItems removeObjectAtIndex:indexPath.row];
+        [self.toDoList removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self saveList];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
 
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-    [self.toDoItems exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-    [self.tableView reloadData];
-}
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+//{
+//    [self.toDoItems exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+//    [self.tableView reloadData];
+//}
 
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,10 +161,9 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    TDLToDoItem *tappedItem = [self.toDoItems objectAtIndex:indexPath.row];
-    tappedItem.completed = !tappedItem.completed;
+    [self.toDoList toggleItemAtIndex:indexPath.row];
+
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self saveList];
 }
 
 @end
