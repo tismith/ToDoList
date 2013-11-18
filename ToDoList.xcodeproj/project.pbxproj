@@ -24,6 +24,7 @@
 		DA86B0CF18371CF900D7FAAF /* TDLAddToDoItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86B0CE18371CF900D7FAAF /* TDLAddToDoItemViewController.m */; };
 		DA86B0D218371DC800D7FAAF /* TDLToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */; };
 		DA86B0D5183729CE00D7FAAF /* TDLToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */; };
+		DABEC1A21839F5FA000C464C /* TDL.png in Resources */ = {isa = PBXBuildFile; fileRef = DABEC1A11839F5FA000C464C /* TDL.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		DA86B0D118371DC800D7FAAF /* TDLToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLToDoListViewController.m; sourceTree = "<group>"; };
 		DA86B0D3183729CE00D7FAAF /* TDLToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLToDoItem.h; path = Models/TDLToDoItem.h; sourceTree = SOURCE_ROOT; };
 		DA86B0D4183729CE00D7FAAF /* TDLToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLToDoItem.m; path = Models/TDLToDoItem.m; sourceTree = SOURCE_ROOT; };
+		DABEC1A11839F5FA000C464C /* TDL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TDL.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		DA86B09018370C9700D7FAAF = {
 			isa = PBXGroup;
 			children = (
+				DABEC1A11839F5FA000C464C /* TDL.png */,
 				DA78B13218381DD7001D85F2 /* Models */,
 				DA86B0A218370C9800D7FAAF /* ToDoList */,
 				DA86B0BB18370C9800D7FAAF /* ToDoListTests */,
@@ -254,6 +257,7 @@
 			files = (
 				DA86B0CC18370F2A00D7FAAF /* Main.storyboard in Resources */,
 				DA86B0A718370C9800D7FAAF /* InfoPlist.strings in Resources */,
+				DABEC1A21839F5FA000C464C /* TDL.png in Resources */,
 				DA86B0AF18370C9800D7FAAF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

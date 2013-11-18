@@ -22,15 +22,13 @@
     self = [super init];
     if (self) {
         self.backupPath = path;
+        self.toDoItems = [[NSMutableArray alloc] init];
         NSData *codedData = [[NSData alloc] initWithContentsOfFile:path];
         if (codedData == nil) return self;
         
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
         if ([unarchiver containsValueForKey:kDataKey]) {
             self.toDoItems = [unarchiver decodeObjectForKey:kDataKey];
-        }
-        if (self.toDoItems == nil) {
-            self.toDoItems = [[NSMutableArray alloc] init];
         }
         [unarchiver finishDecoding];
     }
